@@ -1,0 +1,32 @@
+<Levels>
+	<Level name="Choose File/Castle Ground first" value="0"/>
+	<Level name="Big Boo's haunt" value="4"/>
+	<Level name="Cool, Cool mountain" value="5"/>
+	<Level name="Castle inside" value="6"/>
+	<Level name="Hazy maze cave" value="7"/>
+	<Level name="Shifting sand land" value="8"/>
+	<Level name="Bob-Omb battlefield" value="9"/>
+	<Level name="Snowman's land" value="10"/>
+	<Level name="Wet-dry world" value="11"/>
+	<Level name="Jolly Roger Bay" value="12"/>
+	<Level name="Tiny-huge island" value="13"/>
+	<Level name="Tick tock clock" value="14"/>
+	<Level name="Cruiser crossing the Rainbow" value="15"/>
+	<Level name="Castle Ground" value="16"/>
+	<Level name="Bowser in the dark world" value="17"/>
+	<Level name="Bowser in the fire sea" value="19"/>
+	<Level name="The secret aquarium" value="20"/>
+	<Level name="Bowser in the Sky" value="21"/>
+	<Level name="Lethal lava land" value="22"/>
+	<Level name="Dire, dire docks" value="23"/>
+	<Level name="Whomp's Fortress" value="24"/>
+	<Level name="Castle background" value="26"/>
+	<Level name="The princesse's secret slide" value="27"/>
+	<Level name="Cavern of the metal cap" value="28"/>
+	<Level name="Tower of the Wing Cap" value="29"/>
+	<Level name="Bowser in the dark world - Bowser" value="30"/>
+	<Level name="Wing Mario over the rainbow" value="31"/>
+	<Level name="Bowser in the fire sea - Bowser" value="33"/>
+	<Level name="Bowser in the Sky - Bowser" value="34"/>
+	<Level name="Tall, tall mountain" value="36"/>
+</Levels>
