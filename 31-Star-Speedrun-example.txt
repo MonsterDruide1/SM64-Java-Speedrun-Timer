@@ -1,0 +1,39 @@
+BOB Big Bob-Omb on the Summit||action||1302
+BOB Koopa||action||1302
+BOB Shoot to the Island in the Sky||action||1302
+BOB Red Coins||action||1302
+BOB Behind Chain Chomps Gate||action||1302
+PSS Star 1||action||1302
+PSS Star 2||action||1302
+WF Whomp's Block||action||1302
+WF Shoot into the wild blue||action||1302
+WF 100 Coins||action||1307
+WF Red Coins||action||1302
+WF Top of Fortress||action||1302
+WF Blast away the Wall||action||1302
+WF Caged Island||action||1302
+CCM Li'l penguin||action||1302
+CCM Slide away||action||1302
+CCM Wall kicks||action||1302
+BBH Ghost hunt||action||1302
+BBH 100 Coins||action||1307
+BBH Merry-Go-Round||action||1302
+BBH Secret of Books||action||1302
+BBH Red Coins||action||1302
+BBH Balcony||action||1302
+TOTWC Activate Red Cap||action||3000894 <--><--> TOTWC Activate Red Cap||action||20001306
+BITDW level||enter||30
+BITDW Bowser||action||1302
+MIPS||action||1302
+Toad @ HMC||action||1302
+HMC Swimming Beast||action||1302
+HMC Rolling Rocks||action||1302
+LLL Red Coins on Puzzle||action||1302
+LLL Log Rollin'||action||1302
+SSL Atop the Pyramid||action||1302
+DDD Bowsers Sub||action||1302
+BITFS level||enter||33
+BITFS Bowser||action||1302
+Go to BITS||enter||21
+BITS level||enter||34
+BITS Bowser||action||1909
