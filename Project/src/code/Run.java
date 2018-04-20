@@ -68,7 +68,7 @@ public class Run {
     			}
     		}
         	System.out.println("erreicht");
-    		if(actual.type[0].equals("action") && checks.size()>=1) { //TODO an Alternativen anpassen
+    		if(actual.type[actual.done].equals("action") && checks.size()>=1) {
     			while(erreicht) {
     				erreicht = testFor(actual, 0, new Time[1], 0, false);
     			}
@@ -149,6 +149,7 @@ public class Run {
     
     static void erreicht(boolean real, int actualCheckpoint, Checkpoint actual, Time[] times, long start, int i) {
     	if(real) {
+    		actual.done=i;
         	Date date = new Date();
         	if(actualCheckpoint>0) {
             	times[actualCheckpoint]=new Time(actual.name[i],date.getTime()-start-times[actualCheckpoint-1].time);

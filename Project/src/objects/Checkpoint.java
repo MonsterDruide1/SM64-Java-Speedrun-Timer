@@ -12,6 +12,7 @@ public class Checkpoint {
 	public String[] type;
 	public String[] hexCheckpoint;
 	public String[] nameOfHexCheckpoint;
+	public int done = 0;
 	
 	public Checkpoint(String all) {
 		String[] alternatives = all.split(" <--><--> ");
