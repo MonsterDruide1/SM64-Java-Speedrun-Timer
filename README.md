@@ -12,7 +12,7 @@ This is a Java-Based Speedrun-Timer for Super Mario 64. It doesn't need input to
 The directory "Project" is a Maven project. You can import it into Eclipse (other IDE's possible) and work with it. 
 
 Until now, SM64-Java-Speedrun-Timer is a Project, that needs to be recompiled and edited every time, the emulator is closed. 
-To make it work, you have to start your emulator. Once SM64 started, you need to edit "Run.java" in "src/code". From the Task Manager, you have to read out the PID of the emulator process. In the code, it's in the run(Checkpoints) Method. The PID goes into the variable named "pid". After that, you have to open Cheat Engine and add an Address manually. The Address is **"mupen64-rerecording.exe"+826BFC**. After clicking on OK the real Address is displayed in the table at the bottom. You have to copy it into the "actionAddress" variable. 
+To make it work, you have to start your emulator. Once SM64 started, you need to edit "Run.java" in "src/code". Then you have to open Cheat Engine and add an Address manually. The Address is **"mupen64-rerecording.exe"+826BFC**. After clicking on OK the real Address is displayed in the table at the bottom. You have to copy it into the "actionAddress" variable. In the code, it's in the run(Checkpoints) Method.
 
 Now you're ready to set up your speedrun!
 

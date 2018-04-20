@@ -4,9 +4,12 @@ import java.util.Date;
 import java.util.List;
 
 import com.sun.jna.Memory;
+import com.sun.jna.Native;
 import com.sun.jna.Pointer;
+import com.sun.jna.ptr.IntByReference;
 
 import importedInterfaces.ProcessMethods;
+import importedInterfaces.User32;
 import objects.Checkpoint;
 import objects.FormattedTime;
 import objects.Time;
@@ -28,7 +31,10 @@ public class Run {
     {
     	System.out.println("Run mit "+checks.size()+" Zielen in ");
         /*long dynAddress = findDynAddress(process,offsets,baseAddress);*/
-    	int pid = 15640;//TODO ProcessMethods.getProcessId("mupen64-rerecording.exe");
+        User32 user32 = (User32) Native.loadLibrary("user32", User32.class);
+        IntByReference lpdwProcessId = new IntByReference();
+        user32.GetWindowThreadProcessId(user32.FindWindowA(null, "Mupen 64  0.5"), lpdwProcessId);
+        int pid = lpdwProcessId.getValue();
     	process = ProcessMethods.openProcess(PROCESS_VM_READ|PROCESS_VM_WRITE|PROCESS_VM_OPERATION, pid);
     	actionAddress = 0x20FAB69BCF4L; //TODO auto-get --------  Action
     	levelAddress = actionAddress+0xCEL;  //Level (NICHT LevelIndex)
@@ -124,19 +130,6 @@ public class Run {
                 	erreicht=true;
                 	erreicht(real, actualCheckpoint, actual, times, start, i);
                 }
-                
-                /*if(actionHexString.equals("1302")) {
-                	System.out.println("Star Dance (exits)"); //Auch Schlüssel
-                }
-                else if(actionHexString.equals("1303")) {
-                	System.out.println("Star Dance (water)");
-                }
-                else if (actionHexString.equals("1307")){
-                	System.out.println("Star Dance (doesn't exit)");
-                }
-                else if (actionHexString.equals("1909")){
-                	System.out.println("Grand Star Cutscene");
-                }*/
     		}
     		else if (actual.type[i].equals("enter")) {
             	Memory levelMem = ProcessMethods.readMemory(process,levelAddress,4);

@@ -85,6 +85,7 @@ public interface User32 extends W32APIOptions {
     boolean GetWindowInfo(Pointer hWnd, WINDOWINFO pwi);  
     boolean GetWindowRect(Pointer hWnd, RECT rect);  
     int GetWindowText(Pointer hWnd, byte[] lpString, int nMaxCount);  
+    int GetWindowTextA(Pointer hWnd, byte[] lpString, int nMaxCount);
     int GetWindowTextLength(Pointer hWnd);  
     int GetWindowModuleFileName(Pointer hWnd, byte[] lpszFileName, int cchFileNameMax);  
     int GetWindowThreadProcessId(Pointer hWnd, IntByReference lpdwProcessId);  
