@@ -23,7 +23,7 @@ The syntax is equal every time:
 Lastly, you have to set the path of your speedrun data created in the last step. In the "Main.java" in "src/code" you can set the variable "saved" to the path of your choice.
 
 ## Starting
-After Building and Setting up, you can start the jar without attributes and it will give you a countdown from 3 to 0 and then the first checkpoint starts. After completing all checkpoints the timer will calculate your times and print it out to console. Til today there is no graphical out- or input. The output is in German; I will translate it soon.
+After Building and Setting up, you can start the jar without attributes and it will give you a countdown from 3 to 0 and then the first checkpoint starts. After completing all checkpoints the timer will calculate your times and print it out to console. Til today there is no graphical out- or input. The output is in German or English, depending on your system language.
 
 ## License
 You can use these files under CC BY-NC 4.0 (creative commons 4.0 non-commercial).
