@@ -11,4 +11,10 @@
 	<value name="achieved">Achieved</value>
 	<value name="calculate_times">Calculating times</value>
 	<value name="unknown_type">Unknown type: </value>
+	<value name="total">Total</value>
+	<value name="hours">Hours</value>
+	<value name="minutes">Minutes</value>
+	<value name="seconds">Seconds</value>
+	<value name="mseconds">Milliseconds</value>
+	<value name="and">and</value>
 </values>

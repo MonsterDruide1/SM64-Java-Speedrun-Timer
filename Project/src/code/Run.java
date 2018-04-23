@@ -80,12 +80,7 @@ public class Run {
     		actualCheckpoint++;
     	}
     	date = new Date();
-    	if(Main.german) {
-        	times[times.length-1]=new Time("Gesamt",date.getTime()-start);
-    	}
-    	else {
-        	times[times.length-1]=new Time("Total",date.getTime()-start);
-    	}
+    	times[times.length-1]=new Time(Main.language.get("total"),date.getTime()-start);
     	printInLang("calculate_times");
     	FormattedTime[] formattedTimes = new FormattedTime[times.length];
     	int i=0;
@@ -116,7 +111,7 @@ public class Run {
     			}
     		}
     		milli=(int) time;
-    		formattedTimes[i] = new FormattedTime(timing.name,hour+" Stunden, "+min+" Minuten, "+sec+" Sekunden und "+milli+" Millisekunden");
+    		formattedTimes[i] = new FormattedTime(timing.name,hour+" "+Main.language.get("hours")+", "+min+" "+Main.language.get("minutes")+", "+sec+" "+Main.language.get("seconds")+" "+Main.language.get("and")+" "+milli+" "+Main.language.get("mseconds"));
     		i++;
     	}
     	

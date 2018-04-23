@@ -15,7 +15,6 @@ public class Main {
 	static File saved = new File("D://Eigene_Dateien//Downloads//speedrun.txt");
 	public static String[][] actions;
 	public static Levels levels;
-	public static boolean german = System.getProperty("user.language").equals("de");
 	public static HashMap<String, String> language;
 	
 	public static void main(String[] args) {
