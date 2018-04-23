@@ -13,6 +13,7 @@ import importedInterfaces.User32;
 import objects.Checkpoint;
 import objects.FormattedTime;
 import objects.Time;
+import static code.Main.printInLang;
 
 public class Run {
 
@@ -29,7 +30,7 @@ public class Run {
 
     public static void run(List<Checkpoint> checks)
     {
-    	System.out.println("Run mit "+checks.size()+" Zielen in ");
+    	printInLang("Run mit "+checks.size()+" Zielen in", "Run with "+checks.size()+ " Checkpoints in");
         /*long dynAddress = findDynAddress(process,offsets,baseAddress);*/
         User32 user32 = (User32) Native.loadLibrary("user32", User32.class);
         IntByReference lpdwProcessId = new IntByReference();
@@ -58,7 +59,7 @@ public class Run {
     	long start = date.getTime();
     	while (checks.size()>=1) {
     		Checkpoint actual = checks.remove(0);
-			System.out.print("Aktuell: "+actual.getAllHR());
+			printInLang("Aktuell: "+actual.getAllHR(), "Actual: "+actual.getAllHR());
     		while (!erreicht) {
     			erreicht = testFor(actual, actualCheckpoint, times, start, true);
                 try {
@@ -67,7 +68,7 @@ public class Run {
     				e.printStackTrace();
     			}
     		}
-        	System.out.println("erreicht");
+        	printInLang("erreicht","achieved");
     		if(actual.type[actual.done].equals("action") && checks.size()>=1) {
     			while(erreicht) {
     				erreicht = testFor(actual, 0, new Time[1], 0, false);
@@ -79,8 +80,13 @@ public class Run {
     		actualCheckpoint++;
     	}
     	date = new Date();
-    	times[times.length-1]=new Time("Gesamt",date.getTime()-start);
-    	System.out.println("berechne Zeiten");
+    	if(Main.german) {
+        	times[times.length-1]=new Time("Gesamt",date.getTime()-start);
+    	}
+    	else {
+        	times[times.length-1]=new Time("Total",date.getTime()-start);
+    	}
+    	printInLang("berechne Zeiten","Calculating times");
     	FormattedTime[] formattedTimes = new FormattedTime[times.length];
     	int i=0;
     	for (Time timing : times) {
@@ -141,7 +147,7 @@ public class Run {
                 }
     		}
     		else {
-    			System.out.println("Unknown type: "+actual.type[i]);
+    			printInLang("Unbekannter Typ: "+actual.type[i],"Unknown type: "+actual.type[i]);
     		}
 		}
 		return erreicht;
