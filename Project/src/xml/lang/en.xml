@@ -1,0 +1,14 @@
+<values>
+	<value name="read_data">Reading data...</value>
+	<value name="read_checkpoints">Reading checkpoints...</value>
+	<value name="error_at">Error at</value>
+	<value name="converted_to">Converted to</value>
+	<value name="starting_run">Starting Run</value>
+	<value name="countdown_start_1">Run with </value>
+	<value name="countdown_start_2"> Checkpoints in</value>
+	<value name="countdown_end">Go!</value>
+	<value name="actual">Actual: </value>
+	<value name="achieved">Achieved</value>
+	<value name="calculate_times">Calculating times</value>
+	<value name="unknown_type">Unknown type: </value>
+</values>

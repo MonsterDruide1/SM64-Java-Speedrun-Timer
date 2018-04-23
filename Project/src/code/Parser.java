@@ -1,5 +1,7 @@
 package code;
 
+import java.util.HashMap;
+
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.w3c.dom.Document;
@@ -10,7 +12,7 @@ import objects.Levels;
 
 public class Parser {
 	
-	public static String[][] parse(String name, String tagName, String[] neededAttributes) {
+	public static String[][] parseAttributes(String name, String tagName, String[] neededAttributes) {
 		try {
 			Document dom = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse("src/xml/"+name);
 			Element docEle = dom.getDocumentElement();
@@ -22,6 +24,25 @@ public class Parser {
 					for(int attributeNr=0; attributeNr<neededAttributes.length; attributeNr++){
 						returns[attributeNr][i]=el.getAttribute(neededAttributes[attributeNr]);
 					}
+				}
+				return returns;
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public static HashMap<String, String> parseLanguage(String name) {
+		try {
+			Document dom = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse("src/xml/"+name);
+			Element docEle = dom.getDocumentElement();
+			NodeList nl = docEle.getElementsByTagName("value");
+			if(nl != null && nl.getLength() > 0) {
+				HashMap<String, String> returns = new HashMap<String, String>();
+				for(int i = 0 ; i < nl.getLength();i++) {
+					Element el = (Element)nl.item(i);
+					returns.put(el.getAttribute("name"), el.getTextContent());
 				}
 				return returns;
 			}

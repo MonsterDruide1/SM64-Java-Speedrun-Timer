@@ -30,7 +30,7 @@ public class Run {
 
     public static void run(List<Checkpoint> checks)
     {
-    	printInLang("Run mit "+checks.size()+" Zielen in", "Run with "+checks.size()+ " Checkpoints in");
+    	System.out.println(Main.language.get("countdown_start_1")+checks.size()+Main.language.get("countdown_start_2"));
         /*long dynAddress = findDynAddress(process,offsets,baseAddress);*/
         User32 user32 = (User32) Native.loadLibrary("user32", User32.class);
         IntByReference lpdwProcessId = new IntByReference();
@@ -50,7 +50,7 @@ public class Run {
     		Thread.sleep(1000);
     		System.out.println("1");
     		Thread.sleep(1000);
-    		System.out.println("Los!");
+    		printInLang("countdown_end");
     	}
     	catch(Exception e) {
     		e.printStackTrace();
@@ -59,7 +59,7 @@ public class Run {
     	long start = date.getTime();
     	while (checks.size()>=1) {
     		Checkpoint actual = checks.remove(0);
-			printInLang("Aktuell: "+actual.getAllHR(), "Actual: "+actual.getAllHR());
+			System.out.println(Main.language.get("actual")+actual.getAllHR());
     		while (!erreicht) {
     			erreicht = testFor(actual, actualCheckpoint, times, start, true);
                 try {
@@ -68,7 +68,7 @@ public class Run {
     				e.printStackTrace();
     			}
     		}
-        	printInLang("erreicht","achieved");
+        	printInLang("achieved");
     		if(actual.type[actual.done].equals("action") && checks.size()>=1) {
     			while(erreicht) {
     				erreicht = testFor(actual, 0, new Time[1], 0, false);
@@ -86,7 +86,7 @@ public class Run {
     	else {
         	times[times.length-1]=new Time("Total",date.getTime()-start);
     	}
-    	printInLang("berechne Zeiten","Calculating times");
+    	printInLang("calculate_times");
     	FormattedTime[] formattedTimes = new FormattedTime[times.length];
     	int i=0;
     	for (Time timing : times) {
@@ -147,7 +147,7 @@ public class Run {
                 }
     		}
     		else {
-    			printInLang("Unbekannter Typ: "+actual.type[i],"Unknown type: "+actual.type[i]);
+    			System.out.println(Main.language.get("unknown_type")+actual.type[i]);
     		}
 		}
 		return erreicht;
