@@ -6,15 +6,11 @@ This is a Java-Based Speedrun-Timer for Super Mario 64. It doesn't need input to
 * Java JDK
 * MUPEN64 0.5-rerecording (others hopefully coming soon)
 * SM64 - US Version (others hopefully coming soon)
-* Cheat Engine (hopefully removed soon)
 
 ## Building
-The directory "Project" is a Maven project. You can import it into Eclipse (other IDE's possible) and work with it. 
+The directory "Project" is a Maven project. You can import it into Eclipse (other IDE's may work) and work with it.
 
-Until now, SM64-Java-Speedrun-Timer is a Project, that needs to be recompiled and edited every time, the emulator is closed. 
-To make it work, you have to start your emulator. Once SM64 started, you need to edit "Run.java" in "src/code". Then you have to open Cheat Engine and add an Address manually. The Address is **"mupen64-rerecording.exe"+826BFC**. After clicking on OK the real Address is displayed in the table at the bottom. You have to copy it into the "actionAddress" variable. In the code, it's in the run(Checkpoints) Method.
-
-Now you're ready to set up your speedrun!
+If you want to have it as .jar, then you have to run it from the command line. But before compiling it into a jar, you have to set the variable "saved" (look into "Setting up") to your path.
 
 ## Setting up
 The timer needs to know, which checkpoints you want to have. Thus you need to create a file with all those checkpoints. An example is the file "31-Star-Speedrun-example.txt" in the root of the Git Project. 

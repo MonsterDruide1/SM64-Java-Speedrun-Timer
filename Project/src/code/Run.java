@@ -37,7 +37,7 @@ public class Run {
         user32.GetWindowThreadProcessId(user32.FindWindowA(null, "Mupen 64  0.5"), lpdwProcessId);
         int pid = lpdwProcessId.getValue();
     	process = ProcessMethods.openProcess(PROCESS_VM_READ|PROCESS_VM_WRITE|PROCESS_VM_OPERATION, pid);
-    	actionAddress = 0x20FAB69BCF4L; //TODO auto-get --------  Action
+    	actionAddress = 0x00C26BFCL; //Action
     	levelAddress = actionAddress+0xCEL;  //Level (NICHT LevelIndex)
     	boolean erreicht = false;
     	Time[] times = new Time[checks.size()+1];
