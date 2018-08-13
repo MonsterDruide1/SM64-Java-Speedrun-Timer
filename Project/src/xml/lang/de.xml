@@ -3,6 +3,7 @@
 	<value name="read_checkpoints">Lese Checkpoints...</value>
 	<value name="error_at">Fehler bei</value>
 	<value name="converted_to">Wurde zu</value>
+	<value name="window_not_found">Anwendung nicht gefunden</value>
 	<value name="starting_run">Starte Run</value>
 	<value name="countdown_start_1">Run mit </value>
 	<value name="countdown_start_2"> Zielen in</value>
@@ -17,4 +18,5 @@
 	<value name="seconds">Sekunden</value>
 	<value name="mseconds">Millisekunden</value>
 	<value name="and">und</value>
+	<value name="end">Beendet</value>
 </values>

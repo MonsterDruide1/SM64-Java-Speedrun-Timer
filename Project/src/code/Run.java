@@ -13,7 +13,6 @@ import importedInterfaces.User32;
 import objects.Checkpoint;
 import objects.FormattedTime;
 import objects.Time;
-import static code.Main.printInLang;
 
 public class Run {
 
@@ -30,12 +29,16 @@ public class Run {
 
     public static void run(List<Checkpoint> checks)
     {
-    	System.out.println(Main.language.get("countdown_start_1")+checks.size()+Main.language.get("countdown_start_2"));
+    	Main.log.add(Main.language.get("countdown_start_1")+checks.size()+Main.language.get("countdown_start_2"));
         /*long dynAddress = findDynAddress(process,offsets,baseAddress);*/
         User32 user32 = (User32) Native.loadLibrary("user32", User32.class);
         IntByReference lpdwProcessId = new IntByReference();
         user32.GetWindowThreadProcessId(user32.FindWindowA(null, "Mupen 64  0.5"), lpdwProcessId);
         int pid = lpdwProcessId.getValue();
+        if(pid==0) {
+        	Main.log.add(Main.getInLang("window_not_found"));
+        	return;
+        }
     	process = ProcessMethods.openProcess(PROCESS_VM_READ|PROCESS_VM_WRITE|PROCESS_VM_OPERATION, pid);
     	actionAddress = 0x00C26BFCL; //Action
     	levelAddress = actionAddress+0xCEL;  //Level (NICHT LevelIndex)
@@ -44,13 +47,13 @@ public class Run {
     	int actualCheckpoint=0;
     	try {
     		Thread.sleep(1000);
-    		System.out.println("3");
+    		Main.log.add("3");
     		Thread.sleep(1000);
-    		System.out.println("2");
+    		Main.log.add("2");
     		Thread.sleep(1000);
-    		System.out.println("1");
+    		Main.log.add("1");
     		Thread.sleep(1000);
-    		printInLang("countdown_end");
+    		Main.log.add(Main.getInLang("countdown_end"));
     	}
     	catch(Exception e) {
     		e.printStackTrace();
@@ -59,7 +62,7 @@ public class Run {
     	long start = date.getTime();
     	while (checks.size()>=1) {
     		Checkpoint actual = checks.remove(0);
-			System.out.println(Main.language.get("actual")+actual.getAllHR());
+			Main.log.add(Main.language.get("actual")+actual.getAllHR());
     		while (!erreicht) {
     			erreicht = testFor(actual, actualCheckpoint, times, start, true);
                 try {
@@ -68,7 +71,7 @@ public class Run {
     				e.printStackTrace();
     			}
     		}
-        	printInLang("achieved");
+        	Main.log.add(Main.getInLang("achieved"));
     		if(actual.type[actual.done].equals("action") && checks.size()>=1) {
     			while(erreicht) {
     				erreicht = testFor(actual, 0, new Time[1], 0, false);
@@ -81,7 +84,7 @@ public class Run {
     	}
     	date = new Date();
     	times[times.length-1]=new Time(Main.language.get("total"),date.getTime()-start,date.getTime()-start);
-    	printInLang("calculate_times");
+    	Main.log.add(Main.getInLang("calculate_times"));
     	FormattedTime[] formattedTimes = new FormattedTime[times.length];
     	int i=0;
     	for (Time timing : times) {
@@ -116,8 +119,9 @@ public class Run {
     	}
     	
     	for (FormattedTime time : formattedTimes) {
-    		System.out.println(time.name+" in "+time.time);
+    		Main.log.add(time.name+" in "+time.time);
     	}
+    	Main.allChecksReady=true;
     }
     
     public static boolean testFor(Checkpoint actual, int actualCheckpoint, Time[] times, long start, boolean real) {
@@ -142,7 +146,7 @@ public class Run {
                 }
     		}
     		else {
-    			System.out.println(Main.language.get("unknown_type")+actual.type[i]);
+    			Main.log.add(Main.language.get("unknown_type")+actual.type[i]);
     		}
 		}
 		return erreicht;
@@ -155,7 +159,6 @@ public class Run {
         	if(actualCheckpoint>0) {
         		long sumTime = date.getTime()-start;
             	times[actualCheckpoint]=new Time(actual.name[i],sumTime-times[actualCheckpoint-1].sumTime,sumTime);
-            	System.out.println(times[actualCheckpoint]);
         	}
         	else {
             	times[actualCheckpoint]=new Time(actual.name[i],date.getTime()-start,date.getTime()-start);

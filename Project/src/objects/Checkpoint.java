@@ -34,7 +34,6 @@ public class Checkpoint {
 				for (int integer : Main.levels.value) {
 				    valueList.add(integer);
 				}
-				System.out.println(Integer.parseInt(hexCheckpoint[i]));
 				nameOfHexCheckpoint[i]=Main.levels.name[valueList.indexOf(Integer.parseInt(hexCheckpoint[i]))];
 			}
 			i++;

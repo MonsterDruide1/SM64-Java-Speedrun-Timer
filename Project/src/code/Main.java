@@ -7,18 +7,32 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.swing.JFileChooser;
+
 import objects.Checkpoint;
 import objects.Levels;
 
 public class Main {
 	
-	static File saved = new File("D://Eigene_Dateien//Downloads//speedrun.txt");
+	static File saved;
 	public static String[][] actions;
 	public static Levels levels;
 	public static HashMap<String, String> language;
+	public static List<String> log;
+	public static boolean allChecksReady = false;
 	
 	public static void main(String[] args) {
+		JFileChooser jFileChooser = new JFileChooser();
+		jFileChooser.setMultiSelectionEnabled(false);
+		int result = jFileChooser.showOpenDialog(null);
+		if(!(result==JFileChooser.APPROVE_OPTION)) {
+			System.exit(0);
+		}
+		saved=jFileChooser.getSelectedFile();
 		try {
+			allChecksReady=false;
+			log = new ArrayList<String>();
+			new Thread(new JFrameRunnable()).start();
 			String[] files = new File("src/xml/lang").list();
 			for(int i=0;i<files.length;i++) {
 				if(files[i].split(".xml")[0].equals(System.getProperty("user.language"))) {
@@ -28,37 +42,38 @@ public class Main {
 			if(language==null) {
 				language = Parser.parseLanguage("lang/en.xml");
 			}
-			printInLang("read_data");
+			log.add(getInLang("read_data"));
 			String[][] actionsWithHex = Parser.parseAttributes("MarioActions.xml", "Action", new String[]{"name","value"});
 			actions = Parser.cutHex(actionsWithHex, 1);
 			String[][] levelsParsed = Parser.parseAttributes("Levels.xml", "Level", new String[]{"name","value"});
 			levels = Parser.toLevel(levelsParsed);
 			List<Checkpoint> checks = new ArrayList<Checkpoint>();
-			printInLang("read_checkpoints");
+			log.add(getInLang("read_checkpoints"));
 			BufferedReader br = new BufferedReader(new FileReader(saved));
 			String read = "";
 			while((read=br.readLine())!=null) {
 				Checkpoint actual = new Checkpoint(read);
 				checks.add(actual);
 				if(!read.equals(actual.getAll())) {
-					printInLang("error_at");
-					System.out.println(read);
-					printInLang("converted_to");
-					System.out.println(actual.getAll());
-					System.exit(0);
+					log.add(getInLang("error_at"));
+					log.add(read);
+					log.add(getInLang("converted_to"));
+					log.add(actual.getAll());
+					br.close();
+					return;
 				}
 			}
 			br.close();
-			printInLang("starting_run");
+			log.add(getInLang("starting_run"));
 			Run.run(checks);
-			System.exit(0);
+			return;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public static void printInLang(String key) {
-		System.out.println(language.get(key));
+	public static String getInLang(String key) {
+		return language.get(key);
 	}
 
 }

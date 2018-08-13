@@ -3,6 +3,7 @@
 	<value name="read_checkpoints">Reading checkpoints...</value>
 	<value name="error_at">Error at</value>
 	<value name="converted_to">Converted to</value>
+	<value name="window_not_found">Window not found</value>
 	<value name="starting_run">Starting Run</value>
 	<value name="countdown_start_1">Run with </value>
 	<value name="countdown_start_2"> Checkpoints in</value>
@@ -17,4 +18,5 @@
 	<value name="seconds">Seconds</value>
 	<value name="mseconds">Milliseconds</value>
 	<value name="and">and</value>
+	<value name="end">Finished</value>
 </values>
