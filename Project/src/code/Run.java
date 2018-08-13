@@ -80,7 +80,7 @@ public class Run {
     		actualCheckpoint++;
     	}
     	date = new Date();
-    	times[times.length-1]=new Time(Main.language.get("total"),date.getTime()-start);
+    	times[times.length-1]=new Time(Main.language.get("total"),date.getTime()-start,date.getTime()-start);
     	printInLang("calculate_times");
     	FormattedTime[] formattedTimes = new FormattedTime[times.length];
     	int i=0;
@@ -153,10 +153,12 @@ public class Run {
     		actual.done=i;
         	Date date = new Date();
         	if(actualCheckpoint>0) {
-            	times[actualCheckpoint]=new Time(actual.name[i],date.getTime()-start-times[actualCheckpoint-1].time);
+        		long sumTime = date.getTime()-start;
+            	times[actualCheckpoint]=new Time(actual.name[i],sumTime-times[actualCheckpoint-1].sumTime,sumTime);
+            	System.out.println(times[actualCheckpoint]);
         	}
         	else {
-            	times[actualCheckpoint]=new Time(actual.name[i],date.getTime()-start);
+            	times[actualCheckpoint]=new Time(actual.name[i],date.getTime()-start,date.getTime()-start);
         	}
     	}
     }
