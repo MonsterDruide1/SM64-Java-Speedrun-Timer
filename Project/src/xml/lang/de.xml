@@ -19,4 +19,9 @@
 	<value name="mseconds">Millisekunden</value>
 	<value name="and">und</value>
 	<value name="end">Beendet</value>
+	
+	<value name="error_head">In Zeile</value>
+	<value name="error_no_alternative">ist kein zweites Argument nach dem Alternative-Zeichen.</value>
+	<value name="error_not_enough_arguments">sind nicht genug Angaben durch || getrennt worden.</value>
+	<value name="error_unknown_type">ist ein unbekannter Typ eingegeben worden.</value>
 </values>

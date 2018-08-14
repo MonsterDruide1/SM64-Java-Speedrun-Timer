@@ -19,4 +19,9 @@
 	<value name="mseconds">Milliseconds</value>
 	<value name="and">and</value>
 	<value name="end">Finished</value>
+	
+	<value name="error_head">In Line</value>
+	<value name="error_no_alternative">there is no second argument after the alternative-sign.</value>
+	<value name="error_not_enough_arguments">there are not enough arguemts seperated by ||.</value>
+	<value name="error_unknown_type">there was entered an unknown type.</value>
 </values>

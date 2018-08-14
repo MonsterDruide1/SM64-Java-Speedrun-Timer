@@ -14,8 +14,11 @@ public class Checkpoint {
 	public String[] nameOfHexCheckpoint;
 	public int done = 0;
 	
-	public Checkpoint(String all) {
+	public Checkpoint(String all) throws CheckpointParserError {
 		String[] alternatives = all.split(" <--><--> ");
+		if(all.contains(" <--><--> ")&&alternatives.length==1) {
+			throw new CheckpointParserError(0,"error_no_alternative");
+		}
 		name=new String[alternatives.length];
 		type=new String[alternatives.length];
 		hexCheckpoint=new String[alternatives.length];
@@ -23,6 +26,9 @@ public class Checkpoint {
 		int i=0;
 		for (String alternative : alternatives) {
 			String[] allArray = alternative.split("\\|\\|"); //escapes | -> ||=funktioniert nicht, muss \\|\\|
+			if(allArray.length<=1) {
+				throw new CheckpointParserError(0,"error_not_enough_arguments");
+			}
 			name[i] = allArray[0];
 			type[i] = allArray[1];
 			hexCheckpoint[i] = allArray[2];
@@ -35,6 +41,9 @@ public class Checkpoint {
 				    valueList.add(integer);
 				}
 				nameOfHexCheckpoint[i]=Main.levels.name[valueList.indexOf(Integer.parseInt(hexCheckpoint[i]))];
+			}
+			else {
+				throw new CheckpointParserError(0,"error_unknown_type");
 			}
 			i++;
 		}

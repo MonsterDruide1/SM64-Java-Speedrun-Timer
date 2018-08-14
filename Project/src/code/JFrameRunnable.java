@@ -1,7 +1,12 @@
 package code;
 
+import java.awt.Dimension;
+
 import javax.swing.JFrame;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.ScrollPaneConstants;
 
 public class JFrameRunnable implements Runnable {
 
@@ -9,14 +14,18 @@ public class JFrameRunnable implements Runnable {
 	public void run() {
 		JFrame frame = new JFrame("Log");
 		JTextArea logFrame = new JTextArea();
-		frame.add(logFrame);
-		frame.pack();
+		JScrollPane scroll = new JScrollPane(logFrame);
+		scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		JScrollBar vertical = scroll.getVerticalScrollBar();
+		frame.add(scroll);
+		frame.setSize(new Dimension(400,400));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 		while(Main.allChecksReady==false||!Main.log.isEmpty()) {
 			if(!Main.log.isEmpty()) {
 				logFrame.append(Main.log.remove(0)+"\n");
-				frame.pack();
+				vertical.setValue(vertical.getMaximum());
 			}
 			else {
 				try {
@@ -27,7 +36,7 @@ public class JFrameRunnable implements Runnable {
 			}
 		}
 		logFrame.append(Main.getInLang("end"));
-		frame.pack();
+		vertical.setValue(vertical.getMaximum());
 	}
 
 }
