@@ -1,4 +1,6 @@
 <values>
+	<value name="file_always">Benutze immer diese Datei</value>
+	<value name="other_file">Wähle eine andere Datei</value>
 	<value name="read_data">Lese Daten...</value>
 	<value name="read_checkpoints">Lese Checkpoints...</value>
 	<value name="error_at">Fehler bei</value>

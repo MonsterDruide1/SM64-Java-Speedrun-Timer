@@ -60,10 +60,10 @@ public class Run {
     	}
     	Date date = new Date();
     	long start = date.getTime();
-    	while (checks.size()>=1) {
+    	while ((!Main.restart)&&(checks.size()>=1)) {
     		Checkpoint actual = checks.remove(0);
 			Main.log.add(Main.language.get("actual")+actual.getAllHR());
-    		while (!erreicht) {
+    		while (!Main.restart&&!erreicht) {
     			erreicht = testFor(actual, actualCheckpoint, times, start, true);
                 try {
     				Thread.sleep(1000/30);
@@ -81,6 +81,9 @@ public class Run {
     			erreicht = false;
     		}
     		actualCheckpoint++;
+    	}
+    	if(Main.restart) {
+    		return;
     	}
     	date = new Date();
     	times[times.length-1]=new Time(Main.language.get("total"),date.getTime()-start,date.getTime()-start);

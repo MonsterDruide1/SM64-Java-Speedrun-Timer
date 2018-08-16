@@ -17,15 +17,23 @@ public class Main {
 	public static HashMap<String, String> language;
 	public static List<String> log;
 	public static boolean allChecksReady = false;
+	public static File appdata;
+	public static HashMap<String,String> data;
+	public static boolean restart=false;
+	public static Loader loader;
+	
+	public static String[] args;
 	
 	public static void main(String[] args) {
-		Loader loader = new Loader();
+		Main.args = args;
+		loader = new Loader();
+		data = loader.getSettings();
+		language = loader.language();
 		saved = loader.fileSelector();
 		try {
 			allChecksReady=false;
 			log = new ArrayList<String>();
 			new Thread(new JFrameRunnable()).start();
-			language = loader.language();
 			log.add(getInLang("read_data"));
 			String[][] actionsWithHex = Parser.parseAttributes("MarioActions.xml", "Action", new String[]{"name","value"});
 			actions = Parser.cutHex(actionsWithHex, 1);
@@ -45,6 +53,10 @@ public class Main {
 			}
 			log.add(getInLang("starting_run"));
 			Run.run(checks);
+			if(Main.restart) {
+				Main.restart=false;
+				Main.main(args);
+			}
 			return;
 		} catch (Exception e) {
 			e.printStackTrace();
