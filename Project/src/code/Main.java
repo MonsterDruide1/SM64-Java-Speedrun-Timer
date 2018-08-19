@@ -12,7 +12,7 @@ import objects.Levels;
 public class Main {
 	
 	static File saved;
-	public static String[][] actions;
+	public static String[][] actions;//actions[0][x] = Name of element x - - - actions[1][x] = Value of element x
 	public static Levels levels;
 	public static HashMap<String, String> language;
 	public static List<String> log;
@@ -30,6 +30,9 @@ public class Main {
 		data = loader.getSettings();
 		language = loader.language();
 		saved = loader.fileSelector();
+		if(saved == null) {
+			return;
+		}
 		try {
 			allChecksReady=false;
 			log = new ArrayList<String>();

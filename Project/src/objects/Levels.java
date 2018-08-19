@@ -2,8 +2,8 @@ package objects;
 
 public class Levels {
 	
-	String name[];
-	int value[];
+	public String name[];
+	public int value[];
 	
 	public Levels(String[] name, int[] value) {
 		this.name = name;

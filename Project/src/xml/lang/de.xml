@@ -1,5 +1,10 @@
 <values>
 	<value name="file_always">Benutze immer diese Datei</value>
+	<value name="new_file">Neue Datei</value>
+	<value name="new_file_name">Bitte gebe den Namen der neuen Datei ein!</value>
+	<value name="select">...</value>
+	<value name="search">Suche</value>
+	<value name="save_close">Speichern und schließen</value>
 	<value name="other_file">Wähle eine andere Datei</value>
 	<value name="read_data">Lese Daten...</value>
 	<value name="read_checkpoints">Lese Checkpoints...</value>

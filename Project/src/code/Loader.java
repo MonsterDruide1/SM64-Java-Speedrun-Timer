@@ -1,5 +1,7 @@
 package code;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.io.BufferedReader;
@@ -14,12 +16,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.plaf.metal.MetalFileChooserUI;
 
 import objects.Checkpoint;
 import objects.CheckpointParserError;
@@ -27,6 +31,8 @@ import objects.CheckpointParserError;
 public class Loader {
 	
 	boolean save = false;
+	
+	boolean createNew = false;
 	
 	public HashMap<String,String> getSettings(){
 		HashMap<String,String> returns = new HashMap<String,String>();
@@ -121,12 +127,28 @@ public class Loader {
 			
 		});
 		
+		JButton button = new JButton(Main.language.get("new_file"));
+		button.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				createNew=true;
+				jFileChooser.cancelSelection();
+				FileGenerator.newFile(jFileChooser.getCurrentDirectory());
+			}
+		});
+		
 		((JPanel)((JPanel)jFileChooser.getComponent(3)).getComponent(3)).add(label, 0);
 		((JPanel)((JPanel)jFileChooser.getComponent(3)).getComponent(3)).add(checkBox, 1);
+		((JPanel)((JPanel)jFileChooser.getComponent(3)).getComponent(3)).add(button, 2);
 		
 		int result = jFileChooser.showOpenDialog(null);
 		if(!(result==JFileChooser.APPROVE_OPTION)) {
-			System.exit(0);
+			if(createNew) {
+				return null;
+			}
+			else {
+				System.exit(0);
+			}
 		}
 		if(save == true) {
 			Main.data.put("file_always", jFileChooser.getSelectedFile().getAbsolutePath());
