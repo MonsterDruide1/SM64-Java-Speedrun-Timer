@@ -41,15 +41,26 @@ public class JFrameRunnable implements Runnable {
 				end=true;
 			}
 		});
-		panel.setSize(400, 400);
+		panel.setSize(400, 393);
 		frame.add(panel);
-		frame.setSize(new Dimension(400,400));
+		frame.setSize(new Dimension(400,393));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 		while((!end)&&(Main.allChecksReady==false||!Main.log.isEmpty())) {
 			if(!Main.log.isEmpty()) {
 				logFrame.append(Main.log.remove(0)+"\n");
 				vertical.setValue(vertical.getMaximum());
+				new Thread(new Runnable() {
+					@Override
+					public void run() {
+						try {
+							Thread.sleep(1000);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+						vertical.setValue(vertical.getMaximum());
+					}
+				}).start();
 			}
 			else {
 				try {
@@ -61,6 +72,18 @@ public class JFrameRunnable implements Runnable {
 		}
 		logFrame.append(Main.getInLang("end"));
 		vertical.setValue(vertical.getMaximum());
+		vertical.setValue(vertical.getMaximum());
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				vertical.setValue(vertical.getMaximum());
+			}
+		}).start();
 	}
 
 }

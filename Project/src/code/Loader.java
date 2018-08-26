@@ -23,7 +23,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.plaf.metal.MetalFileChooserUI;
 
 import objects.Checkpoint;
 import objects.CheckpointParserError;

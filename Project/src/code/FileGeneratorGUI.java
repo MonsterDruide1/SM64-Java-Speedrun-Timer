@@ -117,10 +117,92 @@ public class FileGeneratorGUI implements Runnable {
 			save.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
-					FileGenerator.save(textAreas,comboboxen,labels);
-					frame.setVisible(false);
-					frame.dispose();
-					Main.main(Main.args);
+					boolean canSave = true;
+					for(int array=0;array<3;array++) {
+						if(array==0) {
+							for(JTextArea area : textAreas) {
+								if(area.getText().isEmpty()) {
+									canSave=false;
+									new Thread(new Runnable() {
+										@Override
+										public void run() {
+											try {
+												Border border = BorderFactory.createLineBorder(Color.red,2);
+												Border nothing = BorderFactory.createEmptyBorder();
+												area.setBorder(border);
+												Thread.sleep(1000);
+												area.setBorder(nothing);
+												Thread.sleep(1000);
+												area.setBorder(border);
+												Thread.sleep(1000);
+												area.setBorder(nothing);
+											}
+											catch(Exception e) {
+												e.printStackTrace();
+											}
+										}
+									}).start();
+								}
+							}
+						}
+						if(array==1) {
+							for(JComboBox<String> combobox : comboboxen) {
+								if(types[combobox.getSelectedIndex()].equals("")) {
+									new Thread(new Runnable() {
+										@Override
+										public void run() {
+											try {
+												Border border = BorderFactory.createLineBorder(Color.red,2);
+												Border nothing = BorderFactory.createEmptyBorder();
+												combobox.setBorder(border);
+												Thread.sleep(1000);
+												combobox.setBorder(nothing);
+												Thread.sleep(1000);
+												combobox.setBorder(border);
+												Thread.sleep(1000);
+												combobox.setBorder(nothing);
+											}
+											catch(Exception e) {
+												e.printStackTrace();
+											}
+										}
+									}).start();
+								}
+							}
+						}
+						if(array==2) {
+							for(JLabel area : labels) {
+								if(area.getText().isEmpty()) {
+									canSave=false;
+									new Thread(new Runnable() {
+										@Override
+										public void run() {
+											try {
+												Border border = BorderFactory.createLineBorder(Color.red,2);
+												Border nothing = BorderFactory.createEmptyBorder();
+												area.setBorder(border);
+												Thread.sleep(1000);
+												area.setBorder(nothing);
+												Thread.sleep(1000);
+												area.setBorder(border);
+												Thread.sleep(1000);
+												area.setBorder(nothing);
+											}
+											catch(Exception e) {
+												e.printStackTrace();
+											}
+										}
+									}).start();
+								}
+							}
+						}
+					}
+					if(canSave) {
+						FileGenerator.save(textAreas,comboboxen,labels);
+						frame.setVisible(false);
+						frame.dispose();
+						Main.main(Main.args);
+					}
 				}
 			});
 			break;
